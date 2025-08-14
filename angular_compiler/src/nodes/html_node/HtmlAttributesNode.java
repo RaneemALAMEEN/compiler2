@@ -1,0 +1,28 @@
+package nodes.html_node;
+
+import nodes.ASTNode;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class HtmlAttributesNode implements ASTNode {
+    private List<HtmlAttributeNode> htmlAttributeNodes= new ArrayList<HtmlAttributeNode>();
+
+    public List<HtmlAttributeNode> getHtmlAttributeNodes() {
+        return htmlAttributeNodes;
+    }
+
+    public void setHtmlAttributeNodes(List<HtmlAttributeNode> htmlAttributeNodes) {
+        this.htmlAttributeNodes = htmlAttributeNodes;
+    }
+
+    @Override
+    public String toString() {
+        if(htmlAttributeNodes.isEmpty()){
+            return "no attribute node";
+        }
+        return "HtmlAttributesNode{" +
+                "htmlAttributeNodes=" + htmlAttributeNodes +
+                '}';
+    }
+}

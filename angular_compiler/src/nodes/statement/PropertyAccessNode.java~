@@ -1,0 +1,19 @@
+package nodes.statement;
+
+import nodes.ASTNode;
+
+// Node for property access
+class PropertyAccessNode implements ASTNode {
+    public final String object;
+    public final String property;
+
+    public PropertyAccessNode(String object, String property) {
+        this.object = object;
+        this.property = property;
+    }
+
+    @Override
+    public String toString() {
+        return "PropertyAccess(object=" + object + ", property=" + property + ")";
+    }
+}

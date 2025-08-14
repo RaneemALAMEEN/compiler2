@@ -1,0 +1,23 @@
+package nodes.html_node;
+
+import nodes.ASTNode;
+import nodes.statement.IdentifierNode;
+
+public class HtmlTagNode implements ASTNode {
+    private IdentifierNode identifierNode;
+
+    public IdentifierNode getIdentifierNode() {
+        return identifierNode;
+    }
+
+    public void setIdentifierNode(IdentifierNode identifierNode) {
+        this.identifierNode = identifierNode;
+    }
+
+    @Override
+    public String toString() {
+        return "HtmlTagNode{" +
+                "identifierNode=" + identifierNode +
+                '}';
+    }
+}

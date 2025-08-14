@@ -1,0 +1,10 @@
+package nodes.html_node;
+
+import nodes.ASTNode;
+import nodes.statement.ExpressionNode;
+import nodes.statement.LiteralValueNode;
+
+public class HtmlAttributeValueNode implements ASTNode {
+    LiteralValueNode value;
+    ExpressionNode expression;
+}

@@ -1,0 +1,9 @@
+package nodes.html_node;
+
+import nodes.ASTNode;
+
+public class HtmlNode implements ASTNode {
+    private HtmlContentNode content;
+
+
+☻''}

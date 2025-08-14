@@ -1,0 +1,6 @@
+public class Row {
+
+    String type;
+    String value;
+    
+}

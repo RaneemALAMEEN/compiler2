@@ -1,0 +1,19 @@
+package nodes.statement;
+
+import nodes.ASTNode;
+
+import java.util.List;
+
+// Node for block
+public class BlockNode implements ASTNode {
+    public final List<ASTNode> statements;
+
+    public BlockNode(List<ASTNode> statements) {
+        this.statements = statements;
+    }
+
+    @Override
+    public String toString() {
+        return "Block(statements=" + statements + ")";
+    }
+}

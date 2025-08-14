@@ -1,0 +1,25 @@
+package nodes.statement;
+
+import nodes.ASTNode;
+
+import java.util.List;
+
+// Decorator node
+public class DecoratorNode implements ASTNode {
+    private  List<ASTNode> arguments;
+
+
+
+    @Override
+    public String toString() {
+        return "DecoratorNode{" + "arguments=" + arguments + '}';
+    }
+
+    public List<ASTNode> getArguments() {
+        return arguments;
+    }
+
+    public void setArguments(List<ASTNode> arguments) {
+        this.arguments = arguments;
+    }
+}

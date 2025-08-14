@@ -1,0 +1,22 @@
+package nodes.statement;
+
+import nodes.ASTNode;
+
+// Node for type
+public class TypeNode implements ASTNode {
+    public  String type;
+
+
+    @Override
+    public String toString() {
+        return "Type(type=" + type + ")";
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+}

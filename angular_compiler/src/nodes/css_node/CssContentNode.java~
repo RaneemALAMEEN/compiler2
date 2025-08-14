@@ -1,0 +1,38 @@
+package nodes.css_node;
+
+import nodes.ASTNode;
+import nodes.statement.IdentifierNode;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CssContentNode implements ASTNode {
+    IdentifierNode identifierNode;
+    List<CssClassContentNode> cssClassContentNodeList = new ArrayList<>();
+    public IdentifierNode getIdentifierNode() {
+        return identifierNode;
+    }
+
+    public void setIdentifierNode(String identifierNode) {
+        this.identifierNode = identifierNode;
+    }
+
+    public List<CssClassContentNode> getCssClassContentList() {
+        return cssClassContentNodeList;
+    }
+
+    public void setCssClassContentList(List<CssClassContentNode> cssClassContentNodeList) {
+        this.cssClassContentNodeList = cssClassContentNodeList;
+    }
+
+    @Override
+    public String toString() {
+        if(cssClassContentNodeList.isEmpty()){
+            return "CssContentNode{"+ "identifierNode="+identifierNode+'}';
+        }
+        return "CssContentNode{" +
+                "identifierNode=" + identifierNode +
+                ", cssClassContentList=" + cssClassContentNodeList +
+                '}';
+    }
+}

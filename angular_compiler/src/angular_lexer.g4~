@@ -1,0 +1,176 @@
+lexer grammar angular_lexer;
+
+NgIfDirective: '*ngIf';
+NgForDirective: '*ngFor';
+Import:'import';
+Export:'export';
+Class:'class';
+Component:'@Component';
+Service:'@Injectable';
+
+
+
+
+
+
+
+FragmentHTMLTagStart: '<>';
+FragmentHTMLTagEnd: '</>';
+LinkHTMLTagStart: '<a';
+LinkHTMLTagEnd: '</a>';
+BrHTMLTagStart: '<br';
+HrHTMLTagStart: '<hr';
+ImageHTMLTagStart: '<img';
+InputHTMLTagStart: '<input';
+AudioHTMLTagStart: '<audio';
+AudioHTMLTagEnd: '</audio>';
+VideoHTMLTagStart: '<video';
+VideoHTMLTagEnd: '</video>';
+SelfClosingHTMLTagClosing: '/>';
+ButtonHTMLTagStart: '<button';
+ButtonHTMLTagEnd: '</button>';
+DivHTMLTagStart: '<div';
+DivHTMLTagEnd: '</div>';
+FormHTMLTagStart: '<form';
+FormHTMLTagEnd: '</form>';
+HeadingHTMLTagStart: '<h';
+HeadingHTMLTagEnd: '</h';
+ListItemHTMLTagStart: '<li';
+ListItemHTMLTagEnd: '</li>';
+ParagraphHTMLTagStart: '<p';
+ParagraphHTMLTagEnd: '</p>';
+SpanHTMLTagStart: '<span';
+SpanHTMLTagEnd: '</span>';
+UnorderedListHTMLTagStart: '<ul';
+UnorderedListHTMLTagEnd: '</ul>';
+RowHTMLTagStart: '<row';
+RowHTMLTagEnd: '</row>';
+ColumnHTMLTagStart: '<col';
+ColumnHTMLTagEnd: '</col>';
+AnimateHTMLTagStart: '<anim';
+AnimateHTMLTagEnd: '</anim>';
+HtmlHTMLTagStart: '<html';
+HtmlHTMLTagEnd: '</html>';
+HeadHTMLTagStart: '<head';
+HeadHTMLTagEnd: '</head>';
+BodyHTMLTagStart: '<body';
+BodyHTMLTagEnd: '</body>';
+TitleHTMLTagStart: '<title';
+TitleHTMLTagEnd: '</title>';
+MetaHTMLTagStart: '<meta';
+ScriptHTMLTagStart: '<script';
+ScriptHTMLTagEnd: '</script>';
+StyleHTMLTagStart: '<style';
+StyleHTMLTagEnd: '</style>';
+TableHTMLTagStart: '<table';
+TableHTMLTagEnd: '</table>';
+CanvasHTMLTagStart: '<canvas';
+CanvasHTMLTagEnd: '</canvas>';
+SvgHTMLTagStart: '<svg';
+SvgHTMLTagEnd: '</svg>';
+HeaderHTMLTagStart: '<header';
+HeaderHTMLTagEnd: '</header>';
+FooterHTMLTagStart: '<footer';
+FooterHTMLTagEnd: '</footer>';
+NavHTMLTagStart: '<nav';
+NavHTMLTagEnd: '</nav>';
+MainHTMLTagStart: '<main';
+MainHTMLTagEnd: '</main>';
+ArticleHTMLTagStart: '<article';
+ArticleHTMLTagEnd: '</article>';
+
+
+WidthAttributeName: 'width';
+HeightAttributeName: 'height';
+MarginAttributeName: 'margin';
+PaddingAttributeName: 'padding';
+OverflowXHiddenAttributeName: 'overflowX';
+OverflowYHiddenAttributeName: 'overflowY';
+InlineAttributeName: 'inline';
+BackgroundColorAttributeName: 'backgroundColor';
+TextColorAttributeName: 'textColor';
+TypeAttributeName: 'type';
+LabelAttributeName: 'label';
+ValueAttributeName: 'value';
+PlaceHolderAttributeName: 'placeholder';
+CheckedAttributeName: 'chacked';
+SrcAttributeName: 'src';
+HrefAttributeName: 'href';
+TargetAttributeName: 'target';
+OnSubmitAttributeName: 'submit';
+OnChangeAttributeName: 'change';
+OnClickAttributeName: 'click';
+GapAttributeName: 'gap';
+HeadingLevelAttributeName: 'level';
+DirectionAttributeName: 'direction';
+DurationAttributeName: 'duration';
+RepeatAttributeName: 'repeat';
+
+
+OpenBracket: '[';
+CloseBracket: ']';
+OpenParen: '(';
+CloseParen: ')';
+OpenBrace: '{';
+CloseBrace: '}';
+SemiColon: ';';
+Comma: ',';
+Assign: '=';
+Colon: ':';
+QuestionMark: '?';
+Dot: '.';
+Plus: '+';
+Minus: '-';
+Multiply: '*';
+At:'@';
+Divide: '/';
+Modulus: '%';
+Not: '!';
+LessThan: '<';
+GreaterThan: '>';
+LessThanEquals: '<=';
+GreaterThanEquals: '>=';
+NOT_EQUAL: '!=';
+WeakEqual: '==';
+StrongEqual:'===';
+And:'&&';
+Or:'||';
+AngularExpressionStart : '{{';
+AngularExpressionEnd : '}}';
+
+
+Let_Identify: 'let';
+If: 'if';
+Else: 'else';
+While: 'while';
+Break: 'break';
+Void: 'void';
+Continue: 'continue';
+Function: 'function';
+Return: 'return';
+From: 'from';
+Null: 'null';
+Enum: 'enum';
+Array: 'array';
+TypeNumber: 'number';
+TypeString: 'string';
+TypeBoolean: 'boolean';
+This: 'this';
+New: 'new';
+NumberLiteral: [0-9]+ ('.' [0-9]+)?;
+StringLiteral: '"' .*? '"' | ('\'' .*? '\'');
+BooleanLiteral: 'true' | 'false';
+
+Identifier: [a-zA-Z_][a-zA-Z0-9_]*;
+//PLAINTEXT: ~[<>{}]+ ;
+//PLAINTEXT: ~[<>{}\r\n]+  ;
+
+SingleLineComment
+    : '//' ~[\r\n]* -> channel(HIDDEN)
+    ;
+
+MultiLineComment
+    : '/*' .*? '*/' -> channel(HIDDEN)
+    ;
+
+WS: [ \t\r\n]+ -> skip;

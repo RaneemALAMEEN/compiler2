@@ -1,0 +1,57 @@
+import { Component } from '@angular/core';
+let myList: number[] = [1, 2, "oops"];
+@Component({
+  selector: 'app-root',
+  template: `
+    <div class="container">
+      <div class="row">
+        <div class="col" *ngFor="let item of [1, 2, 3]">
+          <div class="box">Element {{ item }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" *ngFor="let item of [4, 5]">
+          <div class="box">Element {{ item }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="box">Element 6</div>
+        </div>
+      </div>
+    </div>
+
+  `,
+  styles: [`
+    /* Common styles for all the layouts */
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .col {
+      width: 30%;
+    }
+
+    .box {
+      background-color: lightblue;
+      padding: 20px;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  `]
+})
+export Class AppComponent {
+  rows = [
+    [1, 2, 3],
+    [4, 5],
+    [6]
+  ];
+}

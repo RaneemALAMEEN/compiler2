@@ -1,0 +1,11 @@
+package nodes.statement;
+
+import nodes.ASTNode;
+
+// Node for continue statement
+class ContinueStatementNode implements ASTNode {
+    @Override
+    public String toString() {
+        return "ContinueStatement";
+    }
+}

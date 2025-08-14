@@ -1,0 +1,308 @@
+package nodes.enum_node;
+
+import nodes.ASTNode;
+
+import java.util.List;
+
+public class Enum implements ASTNode {
+    private String name;
+    private List<EnumValue> values;
+
+    public Enum(String name, List<EnumValue> values) {
+        this.name = name;
+        this.values = values;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<EnumValue> getValues() {
+        return values;
+    }
+
+    public void setValues(List<EnumValue> values) {
+        this.values = values;
+    }
+
+    @Override
+    public String toString() {
+        return "Enum{" +
+                "name='" + name + '\'' +
+                ", values=" + values +
+                '}';
+    }
+}
+
+
+
+class ProgramNode implements ASTNode {
+    private final List<ASTNode> statements;
+
+    public ProgramNode(List<ASTNode> statements) {
+        this.statements = statements;
+    }
+
+    public List<ASTNode> getStatements() {
+        return statements;
+    }
+
+    @Override
+    public String toString() {
+        return "ProgramNode{" + "statements=" + statements + '}';
+    }
+}
+
+// Statement node
+abstract class StatementNode implements ASTNode {}
+
+// Argument node
+ class ArgumentNode implements ASTNode {
+    private final String key;
+    private final ASTNode value;
+
+    public ArgumentNode(String key, ASTNode value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "ArgumentNode{" +
+                "key='" + key + '\'' +
+                ", value=" + value +
+                '}';
+    }
+}
+
+
+// Node for function declaration
+class FunctionDeclarationNode implements ASTNode {
+    public final String identifier;
+    public final List<ParameterNode> parameters;
+    public final String returnType;
+    public final List<ASTNode> body;
+    public final ASTNode returnExpression;
+
+    public FunctionDeclarationNode(String identifier, List<ParameterNode> parameters, String returnType, List<ASTNode> body, ASTNode returnExpression) {
+        this.identifier = identifier;
+        this.parameters = parameters;
+        this.returnType = returnType;
+        this.body = body;
+        this.returnExpression = returnExpression;
+    }
+
+    @Override
+    public String toString() {
+        return "FunctionDeclaration(identifier=" + identifier + ", parameters=" + parameters + ", returnType=" + returnType + ", body=" + body + ", returnExpression=" + returnExpression + ")";
+    }
+}
+
+// Node for type
+class TypeNode implements ASTNode {
+    public final String type;
+
+    public TypeNode(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Type(type=" + type + ")";
+    }
+}
+
+// Node for object declaration
+class ObjectDeclarationNode implements ASTNode {
+    public final String identifier;
+    public final String className;
+    public final List<ASTNode> constructorArgs;
+
+    public ObjectDeclarationNode(String identifier, String className, List<ASTNode> constructorArgs) {
+        this.identifier = identifier;
+        this.className = className;
+        this.constructorArgs = constructorArgs;
+    }
+
+    @Override
+    public String toString() {
+        return "ObjectDeclaration(identifier=" + identifier + ", className=" + className + ", constructorArgs=" + constructorArgs + ")";
+    }
+}
+
+// Node for literal value
+class LiteralValueNode implements ASTNode {
+    public final Object value;
+
+    public LiteralValueNode(Object value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "LiteralValue(value=" + value + ")";
+    }
+}
+
+// Node for parameter
+class ParameterNode implements ASTNode {
+    public final String identifier;
+    public final String type;
+    public final ASTNode defaultValue;
+
+    public ParameterNode(String identifier, String type, ASTNode defaultValue) {
+        this.identifier = identifier;
+        this.type = type;
+        this.defaultValue = defaultValue;
+    }
+
+    @Override
+    public String toString() {
+        return "Parameter(identifier=" + identifier + ", type=" + type + ", defaultValue=" + defaultValue + ")";
+    }
+}
+
+// Node for list literal
+class ListLiteralNode implements ASTNode {
+    public final List<String> identifiers;
+
+    public ListLiteralNode(List<String> identifiers) {
+        this.identifiers = identifiers;
+    }
+
+    @Override
+    public String toString() {
+        return "ListLiteral(identifiers=" + identifiers + ")";
+    }
+}
+
+
+
+
+
+
+
+
+// Node for assignment statement
+class AssignmentStatementNode implements ASTNode {
+    public final String identifier;
+    public final ASTNode expression;
+    public final List<ASTNode> values;
+
+    public AssignmentStatementNode(String identifier, ASTNode expression, List<ASTNode> values) {
+        this.identifier = identifier;
+        this.expression = expression;
+        this.values = values;
+    }
+
+    @Override
+    public String toString() {
+        return "AssignmentStatement(identifier=" + identifier + ", expression=" + expression + ", values=" + values + ")";
+    }
+}
+
+// Node for else-if statement
+class ElseIfStatementNode implements ASTNode {
+    public final ASTNode condition;
+    public final BlockNode block;
+
+    public ElseIfStatementNode(ASTNode condition, BlockNode block) {
+        this.condition = condition;
+        this.block = block;
+    }
+
+    @Override
+    public String toString() {
+        return "ElseIfStatement(condition=" + condition + ", block=" + block + ")";
+    }
+}
+
+// Node for break statement
+class BreakStatementNode implements ASTNode {
+    @Override
+    public String toString() {
+        return "BreakStatement";
+    }
+}
+
+// Node for block
+public class BlockNode implements ASTNode {
+    public final List<ASTNode> statements;
+
+    public BlockNode(List<ASTNode> statements) {
+        this.statements = statements;
+    }
+
+    @Override
+    public String toString() {
+        return "Block(statements=" + statements + ")";
+    }
+}
+
+
+// Node for expression
+class ExpressionNode implements ASTNode {
+    public final String operator;
+    public final ASTNode left;
+    public final ASTNode right;
+
+    public ExpressionNode(String operator, ASTNode left, ASTNode right) {
+        this.operator = operator;
+        this.left = left;
+        this.right = right;
+    }
+
+    @Override
+    public String toString() {
+        return "Expression(operator=" + operator + ", left=" + left + ", right=" + right + ")";
+    }
+}
+
+// Node for parenthesized expression
+class ParenthesizedExpressionNode implements ASTNode {
+    public final ASTNode expression;
+
+    public ParenthesizedExpressionNode(ASTNode expression) {
+        this.expression = expression;
+    }
+
+    @Override
+    public String toString() {
+        return "ParenthesizedExpression(expression=" + expression + ")";
+    }
+}
+
+// Node for property access
+class PropertyAccessNode implements ASTNode {
+    public final String object;
+    public final String property;
+
+    public PropertyAccessNode(String object, String property) {
+        this.object = object;
+        this.property = property;
+    }
+
+    @Override
+    public String toString() {
+        return "PropertyAccess(object=" + object + ", property=" + property + ")";
+    }
+}
+
+// Node for identifier
+class IdentifierNode implements ASTNode {
+    public final String name;
+
+    public IdentifierNode(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Identifier(name=" + name + ")";
+    }
+}
+
