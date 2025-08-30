@@ -1,0 +1,6 @@
+div{ color: black; }
+    h1{ color: purple; }
+    summary { cursor: pointer; font-weight: bold; }
+    p{ color: gray; }
+    span{ color: red; }
+    img { max-width: 200px; height: auto; display:block; margin:8px 0; }

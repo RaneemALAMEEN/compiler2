@@ -8,8 +8,6 @@ public class ExpressionNode implements ASTNode {
     public  ASTNode left;
     public  ASTNode right;
 
-
-
     @Override
     public String toString() {
         return "Expression(operator=" + operator + ", left=" + left + ", right=" + right + ")";

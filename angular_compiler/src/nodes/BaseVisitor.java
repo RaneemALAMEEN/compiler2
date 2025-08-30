@@ -8,6 +8,7 @@ import nodes.exception.NgIfWithoutExpressionException;
 import nodes.exception.TypeMismatchException;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -38,7 +39,8 @@ public class BaseVisitor extends AbstractParseTreeVisitor<ASTNode> implements An
     NgForOnNonIterableError ngForOnNonIterableErrorTable= new NgForOnNonIterableError();
     NgIfMissingExprTable ngIfMissingExprTable= new NgIfMissingExprTable();
     public void printAst() throws TypeMismatchException, VariableRedefinitionException {
-        String source = "C:\\\\Users\\\\ITE\\\\Desktop\\\\code\\\\angular_compiler\\\\src\\\\angular_compiler.txt";
+          final String source =
+                Paths.get(System.getProperty("user.dir"), "angular_compiler", "src", "angular_compiler.txt").toString();
         CharStream cs = null;
         try {
             cs = fromFileName(source);
@@ -66,6 +68,27 @@ public class BaseVisitor extends AbstractParseTreeVisitor<ASTNode> implements An
 //        this.mismatchListErrorTable.print();
 //        this.redefinitionErrorTable.print();// عرض جدول الأخطاء الدلالية
 
+    }
+
+    public ProgramNode parseProgram() throws TypeMismatchException, VariableRedefinitionException {
+        final String source =
+                Paths.get(System.getProperty("user.dir"), "angular_compiler", "src", "angular_compiler.txt").toString();
+        CharStream cs;
+        try {
+            cs = fromFileName(source);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        AngularLexer lexer = new AngularLexer(cs);
+        CommonTokenStream token = new CommonTokenStream(lexer);
+        AngularParser parser = new AngularParser(token);
+        try {
+            return (ProgramNode) this.visitProgram(parser.program());
+        } catch (NgIfWithoutExpressionException e) {
+            throw new RuntimeException(e);
+        } catch (NgForOnNonIterableException e) {
+            throw new RuntimeException(e);
+        }
     }
     @Override
     public ASTNode visitProgram(AngularParser.ProgramContext ctx) throws TypeMismatchException, VariableRedefinitionException, NgIfWithoutExpressionException, NgForOnNonIterableException {
@@ -312,7 +335,7 @@ public class BaseVisitor extends AbstractParseTreeVisitor<ASTNode> implements An
                     content = content.substring(1, content.length() - 1);
                 }
 
-                // 🔍 خطأ ngIf بدون تعبير
+
                 Pattern ngIfPattern = Pattern.compile("\\*ngIf(\\s*=\\s*\"\\s*\")?");
                 Matcher ngIfMatcher = ngIfPattern.matcher(content);
                 while (ngIfMatcher.find()) {
@@ -324,12 +347,12 @@ public class BaseVisitor extends AbstractParseTreeVisitor<ASTNode> implements An
                         ngIfMissingExprTable.getRows().add(errorRow);
                         ngIfMissingExprTable.print();
 
-                        // ✅ رمي استثناء
+
                         throw new NgIfWithoutExpressionException(errorRow.getValue());
                     }
                 }
 
-                // 🔍 خطأ ngFor على قيمة غير قابلة للتكرار
+
                 Pattern ngForPattern = Pattern.compile("\\*ngFor\\s*=\\s*\"let\\s+\\w+\\s+of\\s+([^\"]+)\"");
                 Matcher ngForMatcher = ngForPattern.matcher(content);
                 while (ngForMatcher.find()) {
@@ -341,7 +364,7 @@ public class BaseVisitor extends AbstractParseTreeVisitor<ASTNode> implements An
                         ngForOnNonIterableErrorTable.getRows().add(errorRow);
                         ngForOnNonIterableErrorTable.print();
 
-                        // ✅ رمي استثناء
+
                         throw new NgForOnNonIterableException(errorRow.getValue());
                     }
                 }

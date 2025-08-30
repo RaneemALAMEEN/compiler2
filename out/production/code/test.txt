@@ -1,0 +1,25 @@
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "app-products",
+  template: `
+    <div>
+      <h1>Products</h1>
+      <div>
+        <div><h3>Product 1</h3><p>Category</p><span>Price 100</span></div>
+        <div><h3>Product 2</h3><p>Category</p><span>Price 200</span></div>
+        <div><h3>Product 3</h3><p>Category</p><span>Price 300</span></div>
+         <div><h3>Product 4</h3><p>Category</p><span>Price 300</span></div>
+      </div>
+    </div>
+  `,
+  styles: [`
+    div{ color: black; }
+    h1{ color: blue; }
+    h3{ color: green; }
+    p{ color: gray; }
+    span{ color: red; }
+  `]
+})
+export Class ProductComponent {
+}

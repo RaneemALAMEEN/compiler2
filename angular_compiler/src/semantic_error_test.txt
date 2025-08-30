@@ -1,0 +1,8 @@
+<div *ngFor="let item of 5"></div>
+
+let counter: number = 0;
+let counter: string = "oops";
+
+let myList: number[] = [1, 2, "meaw"];
+
+ <p *ngIf=""></p>

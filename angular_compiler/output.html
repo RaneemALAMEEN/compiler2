@@ -1,14 +1,22 @@
-import { Component } from "@angular/core";
-
-
-@Component({
-  selector: "app-products",
-
-
-  template: `
-    <div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generated</title>
+  <style>
+div{ color: black; }
+    h1{ color: purple; }
+    summary { cursor: pointer; font-weight: bold; }
+    p{ color: gray; }
+    span{ color: red; }
+    img { max-width: 200px; height: auto; display:block; margin:8px 0; }
+  </style>
+</head>
+<body>
+<div>
       <h1>Products</h1>
-      <p>{{ productsCount }}</p>
+      <p><span id="bind-productsCount"></span></p>
 
       <details>
         <summary>Berry juice</summary>
@@ -38,19 +46,14 @@ import { Component } from "@angular/core";
         <img src="https://i.pinimg.com/736x/3a/63/5d/3a635dddb9269b9620e05952595e29df.jpg" alt="Product 3" />
       </details>
     </div>
-  `,
-  styles: [`
-    div{ color: black; }
-    h1{ color: purple; }
-    summary { cursor: pointer; font-weight: bold; }
-    p{ color: gray; }
-    span{ color: red; }
-    img { max-width: 200px; height: auto; display:block; margin:8px 0; }
-  `]
-})
-export Class ProductComponent {
-  let counter: number = 0;
+  <script>
+let productsCount = 4;
+let counter = 0;
+document.addEventListener('DOMContentLoaded', function(){
+  var el = document.getElementById('bind-productsCount');
+  if (el) el.textContent = typeof productsCount !== 'undefined' ? productsCount : '';
+});
 
-
-}
-
+  </script>
+</body>
+</html>
